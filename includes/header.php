@@ -3,7 +3,7 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 if (!isset($_SESSION['usuario_id'])) {
-    header("Location: /ProyectoRedes/login.php");
+    header("Location: /ProyectoRedes/ProyectoRedes/login.php");
     exit();
 }
 $rol = $_SESSION['rol'] ?? '';
