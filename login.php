@@ -9,14 +9,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $password = $_POST['password'];
 
     if (!empty($usuario) && !empty($password)) {
-        $stmt = $conexion->prepare("SELECT id, nombre, password, rol FROM usuarios WHERE usuario = ?");
-        $stmt->bind_param("s", $usuario);
-        $stmt->execute();
-        $result = $stmt->get_result();
+       $sql = "SELECT id, nombre, password, rol FROM usuarios WHERE usuario = '$usuario'";
+       $result = $conexion->query($sql);
 
         if ($user = $result->fetch_assoc()) {
-            // Si usas texto plano en la base de datos (ej. "1234"), usa: if ($password === $user['password'])
-            // Si usas contraseñas encriptadas (hash), usa: if (password_verify($password, $user['password']))
             if ($password === $user['password']) {
                 $_SESSION['usuario_id'] = $user['id'];
                 $_SESSION['nombre'] = $user['nombre'];
@@ -29,9 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } else {
             $error = "El usuario no existe.";
         }
-        $stmt->close();
-    } else {
-        $error = "Por favor complete todos los campos.";
+        $result = $stmt->get_result();
     }
 }
 ?>
@@ -41,29 +35,34 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <title>VetCare Web - Iniciar Sesión</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/ProyectoRedes/css/estilos.css">
 </head>
-<body class="bg-light d-flex align-items-center vh-100">
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-4">
-            <div class="card shadow">
-                <div class="card-header bg-primary text-white text-center">
-                    <h4>VetCare Web</h4>
+<body>
+
+<div class="container-fluid login-container d-flex align-items-center justify-content-center">
+    <div class="row w-100 justify-content-center">
+        <div class="col-md-5 col-lg-4">
+            <div class="card login-card shadow-lg">
+                <div class="login-header">
+                    <div class="mb-2">
+                    </div>
+                    <h3 class="fw-bold mb-0">VetCare Web</h3>
+                    <p class="text-white-50 mb-0 small">Sistema de Gestión Veterinaria</p>
                 </div>
-                <div class="card-body">
+                <div class="card-body p-4">
                     <?php if ($error): ?>
-                        <div class="alert alert-danger py-2"><?= htmlspecialchars($error) ?></div>
+                        <div class="alert alert-danger py-2 text-center small"><?= htmlspecialchars($error) ?></div>
                     <?php endif; ?>
                     <form method="POST">
                         <div class="mb-3">
-                            <label class="form-label">Usuario</label>
-                            <input type="text" name="usuario" class="form-control" required>
+                            <label class="form-label text-muted fw-semibold small">Usuario</label>
+                            <input type="text" name="usuario" class="form-control" placeholder="Ingrese su usuario" required>
                         </div>
-                        <div class="mb-3">
-                            <label class="form-label">Contraseña</label>
-                            <input type="password" name="password" class="form-control" required>
+                        <div class="mb-4">
+                            <label class="form-label text-muted fw-semibold small">Contraseña</label>
+                            <input type="password" name="password" class="form-control" placeholder="••••••••" required>
                         </div>
-                        <button type="submit" class="btn btn-primary w-100">Ingresar</button>
+                        <button type="submit" class="btn btn-primary w-100 py-2 fw-bold shadow-sm">Ingresar al Sistema</button>
                     </form>
                 </div>
             </div>
