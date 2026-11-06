@@ -33,8 +33,16 @@ footer {
     overflow: hidden;
 }
 .login-header {
-    background-color: #0d6efd;
+    background-color: #18a8cc;
     color: white;
     padding: 2rem;
     text-align: center;
+}
+
+.btn-primary {
+    background-color: #18a8cc; 
+}
+
+.btn-primary:hover {
+    background-color: rgb(102, 188, 246); 
 }
