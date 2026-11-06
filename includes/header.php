@@ -18,7 +18,8 @@ $rol = $_SESSION['rol'] ?? '';
     <link rel="stylesheet" href="/ProyectoRedes/css/estilos.css">
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+<!-- Se removió "bg-primary" para permitir el control de color por estilos -->
+<nav class="navbar navbar-expand-lg navbar-dark">
   <div class="container-fluid">
     <a class="navbar-brand fw-bold" href="/ProyectoRedes/index.php">VetCare Web</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">

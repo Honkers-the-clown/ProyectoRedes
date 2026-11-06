@@ -9,10 +9,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $password = $_POST['password'];
 
     if (!empty($usuario) && !empty($password)) {
-       $sql = "SELECT id, nombre, password, rol FROM usuarios WHERE usuario = '$usuario'";
-       $result = $conexion->query($sql);
+        $sql = "SELECT id, nombre, password, rol FROM usuarios WHERE usuario = '$usuario'";
+        $result = $conexion->query($sql);
 
-        if ($user = $result->fetch_assoc()) {
+        if ($result && $user = $result->fetch_assoc()) {
             if ($password === $user['password']) {
                 $_SESSION['usuario_id'] = $user['id'];
                 $_SESSION['nombre'] = $user['nombre'];
@@ -25,7 +25,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } else {
             $error = "El usuario no existe.";
         }
-        $result = $stmt->get_result();
+    } else {
+        $error = "Por favor complete todos los campos.";
     }
 }
 ?>

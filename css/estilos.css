@@ -7,7 +7,34 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    background-color: #f8f9fa;
+    background: linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.85)), url('../imagenes/animales.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+nav.navbar {
+    background-color: #18a8cc;
+}
+
+nav.navbar .navbar-brand {
+    color: #ffffff;
+}
+nav.navbar .navbar-brand:hover {
+    color: #a2ccd6 !important;
+}
+
+nav.navbar .navbar-nav .nav-link {
+    color: white
+}
+
+nav.navbar .navbar-nav .nav-link:hover {
+    color: #a2ccd6;
+}
+
+nav.navbar .btn-outline-light:hover {
+    background-color: #a2ccd6;
+    color: #18a8cc;
 }
 
 .container {
