@@ -57,11 +57,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <form method="POST">
                         <div class="mb-3">
                             <label class="form-label text-muted fw-semibold small">Usuario</label>
-                            <input type="text" name="usuario" class="form-control" placeholder="Ingrese su usuario" required>
+                            <input type="text" name="usuario" class="form-control" placeholder="Ingrese su usuario" required
+                                   oninvalid="this.setCustomValidity('Por favor, complete este campo.')"
+                                   oninput="this.setCustomValidity('')">
                         </div>
                         <div class="mb-4">
                             <label class="form-label text-muted fw-semibold small">Contraseña</label>
-                            <input type="password" name="password" class="form-control" placeholder="••••••••" required>
+                            <input type="password" name="password" class="form-control" placeholder="••••••••" required
+                                   oninvalid="this.setCustomValidity('Por favor, complete este campo.')"
+                                   oninput="this.setCustomValidity('')">
                         </div>
                         <button type="submit" class="btn btn-primary w-100 py-2 fw-bold shadow-sm">Ingresar al Sistema</button>
                     </form>
