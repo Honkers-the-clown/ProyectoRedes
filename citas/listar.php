@@ -7,6 +7,18 @@ if (!isset($_SESSION['usuario_id'])) {
 $rol = $_SESSION['rol'] ?? '';
 
 require_once '../conexion.php';
+
+// Procesar el cambio de estado si se envía el formulario
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['cita_id'], $_POST['nuevo_estado'])) {
+    $cita_id = intval($_POST['cita_id']);
+    $nuevo_estado = $conexion->real_escape_string($_POST['nuevo_estado']);
+
+    $update_sql = "UPDATE citas SET estado = '$nuevo_estado' WHERE id = $cita_id";
+    $conexion->query($update_sql);
+    header("Location: listar.php");
+    exit();
+}
+
 require_once '../includes/header.php';
 
 $sql = "SELECT c.id, m.nombre AS mascota, cl.nombre AS cliente, u.nombre AS veterinario, 
@@ -29,7 +41,7 @@ $result = $conexion->query($sql);
 
 <div class="card shadow-sm">
     <div class="card-body">
-        <table class="table table-striped table-hover">
+        <table class="table table-striped table-hover align-middle">
             <thead class="table-dark">
                 <tr>
                     <th>ID</th>
@@ -37,7 +49,8 @@ $result = $conexion->query($sql);
                     <th>Mascota (Cliente)</th>
                     <th>Veterinario</th>
                     <th>Motivo</th>
-                    <th>Estado</th>
+                    <th>Estado Actual</th>
+                    <th class="text-center">Cambiar Estado</th>
                 </tr>
             </thead>
             <tbody>
@@ -58,11 +71,23 @@ $result = $conexion->query($sql);
                             ?>
                             <span class="badge <?= $badgeClass ?>"><?= $c['estado'] ?></span>
                         </td>
+                        <td>
+                            <!-- Formulario en línea para actualizar el estado al instante -->
+                            <form method="POST" class="d-flex gap-2 justify-content-center">
+                                <input type="hidden" name="cita_id" value="<?= $c['id'] ?>">
+                                <select name="nuevo_estado" class="form-select form-select-sm" style="width: 140px;" required>
+                                    <option value="Pendiente" <?= ($c['estado'] === 'Pendiente') ? 'selected' : '' ?>>Pendiente</option>
+                                    <option value="Completada" <?= ($c['estado'] === 'Completada') ? 'selected' : '' ?>>Completada</option>
+                                    <option value="Cancelada" <?= ($c['estado'] === 'Cancelada') ? 'selected' : '' ?>>Cancelada</option>
+                                </select>
+                                <button type="submit" class="btn btn-primary btn-sm fw-bold">Actualizar</button>
+                            </form>
+                        </td>
                     </tr>
                     <?php endwhile; ?>
                 <?php else: ?>
                     <tr>
-                        <td colspan="6" class="text-center text-muted">No hay citas registradas en la agenda.</td>
+                        <td colspan="7" class="text-center text-muted py-3">No hay citas registradas en la agenda.</td>
                     </tr>
                 <?php endif; ?>
             </tbody>

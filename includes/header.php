@@ -29,7 +29,10 @@ $rol = $_SESSION['rol'] ?? '';
       <ul class="navbar-nav me-auto">
         <!-- Clientes: Admin y Recepcionista pueden modificar, Veterinario solo ver -->
         <li class="nav-item"><a class="nav-link" href="/ProyectoRedes/clientes/listar.php">Clientes</a></li>
-        
+
+        <!-- Mascotas: Admin y Recepcionista pueden modificar, Veterinario solo ver -->
+        <li class="nav-item"><a class="nav-link" href="/ProyectoRedes/mascotas/listar.php">Mascotas</a></li>
+
         <!-- Citas: Admin y Recepcionista pueden modificar, Veterinario solo ver -->
         <li class="nav-item"><a class="nav-link" href="/ProyectoRedes/citas/listar.php">Citas</a></li>
         

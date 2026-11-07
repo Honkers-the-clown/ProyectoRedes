@@ -38,6 +38,17 @@ require_once 'includes/header.php';
         </div>
     </div>
 
+    <div class="col-md-4">
+    <div class="card mb-4 shadow-sm">
+        <div class="card-body">
+            <h5 class="card-title">Gestión de Mascotas</h5>
+            <p class="card-text">Agregue, edite y consulte el expediente de los pacientes.</p>
+            <a href="mascotas/listar.php" class="btn btn-outline-primary">Ver Mascotas</a>
+        </div>
+    </div>
+    </div>
+
+
     <!-- Validamos con isset() para que no de error si 'rol' no está definido -->
     <?php if (isset($_SESSION['rol']) && $_SESSION['rol'] === 'Administrador'): ?>
     <div class="col-md-4">
