@@ -62,19 +62,27 @@ require_once '../includes/header.php';
         <form method="POST">
             <div class="mb-3">
                 <label class="form-label">Nombre del Cliente *</label>
-                <input type="text" name="nombre" class="form-control" value="<?= htmlspecialchars($cliente['nombre']) ?>" required>
+                <input type="text" name="nombre" class="form-control" value="<?= htmlspecialchars($cliente['nombre']) ?>" required
+                oninvalid="this.setCustomValidity('Por favor, complete este campo.')"
+                oninput="this.setCustomValidity('')">
             </div>
             <div class="mb-3">
                 <label class="form-label">Teléfono</label>
-                <input type="text" name="telefono" class="form-control" value="<?= htmlspecialchars($cliente['telefono']) ?>">
+                <input type="text" name="telefono" class="form-control" value="<?= htmlspecialchars($cliente['telefono']) ?>" required
+                oninvalid="this.setCustomValidity('Por favor, complete este campo.')"
+                oninput="this.setCustomValidity('')">
             </div>
             <div class="mb-3">
                 <label class="form-label">Correo Electrónico</label>
-                <input type="email" name="correo" class="form-control" value="<?= htmlspecialchars($cliente['correo']) ?>">
+                <input type="email" name="correo" class="form-control" value="<?= htmlspecialchars($cliente['correo']) ?>" required
+                oninvalid="this.setCustomValidity('Por favor, complete este campo.')"
+                oninput="this.setCustomValidity('')">
             </div>
             <div class="mb-3">
                 <label class="form-label">Dirección</label>
-                <textarea name="direccion" class="form-control" rows="2"><?= htmlspecialchars($cliente['direccion']) ?></textarea>
+                <textarea name="direccion" class="form-control" rows="2" required
+                oninvalid="this.setCustomValidity('Por favor, complete este campo.')"
+                oninput="this.setCustomValidity('')"><?= htmlspecialchars($cliente['direccion']) ?></textarea>
             </div>
             <button type="submit" class="btn btn-warning fw-bold">Guardar Cambios</button>
             <a href="listar.php" class="btn btn-secondary">Cancelar</a>

@@ -15,11 +15,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $rol = $_POST['rol'];
 
     if (!empty($nombre) && !empty($usuario) && !empty($password)) {
-        // Encriptar contraseña de forma segura
-        $passwordHash = password_hash($password, PASSWORD_DEFAULT);
-
         $stmt = $conexion->prepare("INSERT INTO usuarios (nombre, usuario, password, rol) VALUES (?, ?, ?, ?)");
-        $stmt->bind_param("ssss", $nombre, $usuario, $passwordHash, $rol);
+        $stmt->bind_param("ssss", $nombre, $usuario, $password, $rol);
 
         if ($stmt->execute()) {
             header("Location: listar.php");
@@ -47,19 +44,27 @@ require_once '../includes/header.php';
         <form method="POST">
             <div class="mb-3">
                 <label class="form-label">Nombre Completo *</label>
-                <input type="text" name="nombre" class="form-control" required>
+                <input type="text" name="nombre" class="form-control" required
+                oninvalid="this.setCustomValidity('Por favor, complete este campo.')"
+                oninput="this.setCustomValidity('')">
             </div>
             <div class="mb-3">
                 <label class="form-label">Nombre de Usuario *</label>
-                <input type="text" name="usuario" class="form-control" required>
+                <input type="text" name="usuario" class="form-control" required
+                oninvalid="this.setCustomValidity('Por favor, complete este campo.')"
+                oninput="this.setCustomValidity('')">
             </div>
             <div class="mb-3">
                 <label class="form-label">Contraseña *</label>
-                <input type="password" name="password" class="form-control" required>
+                <input type="password" name="password" class="form-control" required
+                oninvalid="this.setCustomValidity('Por favor, complete este campo.')"
+                oninput="this.setCustomValidity('')">
             </div>
             <div class="mb-3">
                 <label class="form-label">Rol del Sistema *</label>
-                <select name="rol" class="form-select" required>
+                <select name="rol" class="form-select" required
+                oninvalid="this.setCustomValidity('Por favor, complete este campo.')"
+                oninput="this.setCustomValidity('')">
                     <option value="Recepcionista">Recepcionista</option>
                     <option value="Veterinario">Veterinario</option>
                     <option value="Administrador">Administrador</option>

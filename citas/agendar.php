@@ -51,7 +51,9 @@ require_once '../includes/header.php';
         <form method="POST">
             <div class="mb-3">
                 <label class="form-label">Mascota (Dueño) *</label>
-                <select name="mascota_id" class="form-select" required>
+                <select name="mascota_id" class="form-select" required
+                oninvalid="this.setCustomValidity('Por favor, seleccionar la mascota para la cita (y el dueño).')"
+                oninput="this.setCustomValidity('')">
                     <option value="">Seleccione una mascota...</option>
                     <?php while ($m = $mascotas->fetch_assoc()): ?>
                         <option value="<?= $m['id'] ?>"><?= htmlspecialchars($m['nombre']) ?> (Dueño: <?= htmlspecialchars($m['cliente']) ?>)</option>
@@ -60,7 +62,9 @@ require_once '../includes/header.php';
             </div>
             <div class="mb-3">
                 <label class="form-label">Veterinario Asignado *</label>
-                <select name="veterinario_id" class="form-select" required>
+                <select name="veterinario_id" class="form-select" required
+                oninvalid="this.setCustomValidity('Por favor, seleccionar el veterinario al cual le corresponde esta cita.')"
+                oninput="this.setCustomValidity('')">
                     <option value="">Seleccione un veterinario...</option>
                     <?php while ($v = $veterinarios->fetch_assoc()): ?>
                         <option value="<?= $v['id'] ?>"><?= htmlspecialchars($v['nombre']) ?> (<?= $v['rol'] ?>)</option>
@@ -69,11 +73,15 @@ require_once '../includes/header.php';
             </div>
             <div class="mb-3">
                 <label class="form-label">Fecha y Hora de la Cita *</label>
-                <input type="datetime-local" name="fecha_hora" class="form-control" required>
+                <input type="datetime-local" name="fecha_hora" class="form-control" required
+                oninvalid="this.setCustomValidity('Por favor, dar la fecha de la cita.')"
+                oninput="this.setCustomValidity('')">
             </div>
             <div class="mb-3">
                 <label class="form-label">Motivo de la Consulta *</label>
-                <textarea name="motivo" class="form-control" rows="3" required placeholder="Ej: Control de rutina, vacunación, urgencia..."></textarea>
+                <textarea name="motivo" class="form-control" rows="3" required placeholder="Ej: Control de rutina, vacunación, urgencia..." require
+                oninvalid="this.setCustomValidity('Por favor, dar a detalle la razon de la cita.')"
+                oninput="this.setCustomValidity('')"></textarea>
             </div>
             <button type="submit" class="btn btn-primary">Guardar Cita</button>
             <a href="listar.php" class="btn btn-secondary">Cancelar</a>

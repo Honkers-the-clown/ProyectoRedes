@@ -45,19 +45,27 @@ require_once '../includes/header.php';
         <form method="POST">
             <div class="mb-3">
                 <label class="form-label">Nombre Completo *</label>
-                <input type="text" name="nombre" class="form-control" required>
+                <input type="text" name="nombre" class="form-control" required
+                oninvalid="this.setCustomValidity('Por favor, complete este campo.')"
+                oninput="this.setCustomValidity('')">
             </div>
             <div class="mb-3">
                 <label class="form-label">Cédula *</label>
-                <input type="text" name="cedula" class="form-control" required>
+                <input type="text" name="cedula" class="form-control" required
+                oninvalid="this.setCustomValidity('Por favor, complete este campo.')"
+                oninput="this.setCustomValidity('')">
             </div>
             <div class="mb-3">
                 <label class="form-label">Teléfono</label>
-                <input type="text" name="telefono" class="form-control">
+                <input type="text" name="telefono" class="form-control" required
+                oninvalid="this.setCustomValidity('Por favor, complete este campo.')"
+                oninput="this.setCustomValidity('')">
             </div>
             <div class="mb-3">
                 <label class="form-label">Correo Electrónico</label>
-                <input type="email" name="correo" class="form-control">
+                <input type="email" name="correo" class="form-control" required
+                oninvalid="this.setCustomValidity('Por favor, complete este campo.')"
+                oninput="this.setCustomValidity('')">
             </div>
             <div class="mb-3">
                 <label class="form-label">Dirección</label>

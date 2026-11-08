@@ -14,7 +14,7 @@ $result = $conexion->query($sql);
 
 <div class="d-flex justify-content-between align-items-center mb-3">
     <h2>Gestión de Clientes</h2>
-    <a href="agregar.php" class="btn btn-success">+ Registrar Nuevo Cliente</a>
+    <a href="registrar.php" class="btn btn-success">+ Registrar Nuevo Cliente</a>
 </div>
 
 <div class="card shadow-sm">

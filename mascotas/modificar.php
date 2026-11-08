@@ -67,7 +67,9 @@ require_once '../includes/header.php';
         <form method="POST">
             <div class="mb-3">
                 <label class="form-label">Dueño (Cliente) *</label>
-                <select name="cliente_id" class="form-select" required>
+                <select name="cliente_id" class="form-select" required
+                oninvalid="this.setCustomValidity('Por favor, elegir la cuenta cliente encargada de esta mascota.')"
+                oninput="this.setCustomValidity('')">
                     <option value="">Seleccione un cliente...</option>
                     <?php while ($c = $clientes->fetch_assoc()): ?>
                         <option value="<?= $c['id'] ?>" <?= ($c['id'] == $mascota['cliente_id']) ? 'selected' : '' ?>>
@@ -78,23 +80,33 @@ require_once '../includes/header.php';
             </div>
             <div class="mb-3">
                 <label class="form-label">Nombre de la Mascota *</label>
-                <input type="text" name="nombre" class="form-control" value="<?= htmlspecialchars($mascota['nombre']) ?>" required>
+                <input type="text" name="nombre" class="form-control" value="<?= htmlspecialchars($mascota['nombre']) ?>" required
+                oninvalid="this.setCustomValidity('Por favor, dar el nombre de la mascota a agregar.')"
+                oninput="this.setCustomValidity('')">
             </div>
             <div class="mb-3">
                 <label class="form-label">Especie *</label>
-                <input type="text" name="especie" class="form-control" value="<?= htmlspecialchars($mascota['especie']) ?>" required>
+                <input type="text" name="especie" class="form-control" value="<?= htmlspecialchars($mascota['especie']) ?>" required
+                oninvalid="this.setCustomValidity('Por favor, dar la especia de la mascota.')"
+                oninput="this.setCustomValidity('')">
             </div>
             <div class="mb-3">
                 <label class="form-label">Raza</label>
-                <input type="text" name="raza" class="form-control" value="<?= htmlspecialchars($mascota['raza']) ?>">
+                <input type="text" name="raza" class="form-control" value="<?= htmlspecialchars($mascota['raza']) ?>" required
+                oninvalid="this.setCustomValidity('Por favor, dar la raza de el animal.')"
+                oninput="this.setCustomValidity('')">
             </div>
             <div class="mb-3">
                 <label class="form-label">Edad (años)</label>
-                <input type="number" name="edad" class="form-control" min="0" value="<?= $mascota['edad'] ?>">
+                <input type="number" name="edad" class="form-control" min="0" value="<?= $mascota['edad'] ?>" required
+                oninvalid="this.setCustomValidity('Por favor, dar la edad de el animal.')"
+                oninput="this.setCustomValidity('')">
             </div>
             <div class="mb-3">
                 <label class="form-label">Peso (kg)</label>
-                <input type="number" step="0.01" name="peso" class="form-control" min="0" value="<?= $mascota['peso'] ?>">
+                <input type="number" step="0.01" name="peso" class="form-control" min="0" value="<?= $mascota['peso'] ?>" required
+                oninvalid="this.setCustomValidity('Por favor, dar el peso de el animal, en kilogramos.')"
+                oninput="this.setCustomValidity('')">
             </div>
             <button type="submit" class="btn btn-primary">Guardar Cambios</button>
             <a href="listar.php" class="btn btn-secondary">Cancelar</a>

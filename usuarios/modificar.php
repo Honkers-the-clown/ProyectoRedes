@@ -67,7 +67,9 @@ require_once '../includes/header.php';
         <form method="POST">
             <div class="mb-3">
                 <label class="form-label">Nombre Completo *</label>
-                <input type="text" name="nombre" value="<?= htmlspecialchars($usuario['nombre']) ?>" class="form-control" required>
+                <input type="text" name="nombre" value="<?= htmlspecialchars($usuario['nombre']) ?>" class="form-control" required
+                oninvalid="this.setCustomValidity('Por favor, complete este campo.')"
+                oninput="this.setCustomValidity('')">
             </div>
             <div class="mb-3">
                 <label class="form-label">Nombre de Usuario (No modificable)</label>
@@ -79,7 +81,9 @@ require_once '../includes/header.php';
             </div>
             <div class="mb-3">
                 <label class="form-label">Rol del Sistema *</label>
-                <select name="rol" class="form-select" required>
+                <select name="rol" class="form-select" required
+                oninvalid="this.setCustomValidity('Por favor, complete este campo.')"
+                oninput="this.setCustomValidity('')">
                     <option value="Recepcionista" <?= $usuario['rol'] == 'Recepcionista' ? 'selected' : '' ?>>Recepcionista</option>
                     <option value="Veterinario" <?= $usuario['rol'] == 'Veterinario' ? 'selected' : '' ?>>Veterinario</option>
                     <option value="Administrador" <?= $usuario['rol'] == 'Administrador' ? 'selected' : '' ?>>Administrador</option>
