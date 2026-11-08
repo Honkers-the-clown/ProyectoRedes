@@ -18,7 +18,6 @@ $rol = $_SESSION['rol'] ?? '';
     <link rel="stylesheet" href="/ProyectoRedes/css/estilos.css">
 </head>
 <body>
-<!-- Se removió "bg-primary" para permitir el control de color por estilos -->
 <nav class="navbar navbar-expand-lg navbar-dark">
   <div class="container-fluid">
     <a class="navbar-brand fw-bold" href="/ProyectoRedes/index.php">VetCare Web</a>
